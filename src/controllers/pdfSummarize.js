@@ -163,7 +163,6 @@ const summarizePdf = async (req, res) => {
         },
       });
       return;
-      return;
     }
 
     let summarisedText = pdfText;
