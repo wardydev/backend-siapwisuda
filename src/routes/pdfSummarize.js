@@ -1,7 +1,11 @@
 const express = require("express");
-const { getStringTest } = require("../controllers/pdfSummarize.js");
-const router = express.Router();
+const { summarizePdf } = require("../controllers/pdfSummarize.js");
+const multer = require("multer");
+const path = require("path");
 
-router.get("/", getStringTest);
+const router = express.Router();
+const upload = multer({ dest: path.join(__dirname, "../../pdfsummary") });
+
+router.post("/", upload.single("pdf"), summarizePdf);
 
 module.exports = router;
