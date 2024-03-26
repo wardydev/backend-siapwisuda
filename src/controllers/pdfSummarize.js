@@ -180,8 +180,15 @@ const summarizePdf = async (req, res) => {
       tokens: summarisedText.totalTokens,
     });
   } catch (error) {
-    console.error("An error occured:", error);
-    res.status(500).json({ error: error });
+    console.log(error);
+    res.status(500).json({
+      success: false,
+      error: {
+        code: 404,
+        message:
+          "Terjadi kesalahan disisi server, Pastikan internet Anda terkoneksi.",
+      },
+    });
   }
 };
 

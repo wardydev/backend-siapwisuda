@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const pdfSummarizeRouter = require("./routes/pdfSummarize.js");
+const usersRouter = require("./routes/users.js");
 
 // reassign
 const app = express();
@@ -19,6 +20,7 @@ app.use(express.json());
 
 // routes
 app.use("/pdf-summarize", pdfSummarizeRouter);
+app.use("/users", usersRouter);
 
 // default
 app.get("/", (req, res) => {
