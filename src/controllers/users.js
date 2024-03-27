@@ -6,8 +6,6 @@ const createUser = async (req, res) => {
   try {
     const { fullName, email, phoneNumber, password } = req.body;
 
-    console.log(fullName, email, phoneNumber, password);
-
     if (!fullName | !email | !phoneNumber | !password) {
       res.status(400).json({
         success: false,
@@ -30,7 +28,6 @@ const createUser = async (req, res) => {
       profile: "",
       role: "user",
     });
-    console.log("data", data);
     res.status(201).json({
       success: true,
       message: "Registrasi berhasil, Silahkan login untuk proses berikutnya.",
@@ -50,7 +47,6 @@ const createUser = async (req, res) => {
 const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
-    console.log(email, password);
 
     if (!email | !password) {
       res.status(400).json({
@@ -73,8 +69,6 @@ const loginUser = async (req, res) => {
         password,
         userSelected[0].password
       );
-
-      console.log(userSelected);
 
       if (!passwordMatched) {
         return res.status(401).json({
@@ -108,7 +102,6 @@ const loginUser = async (req, res) => {
       });
     }
   } catch (err) {
-    console.log(err);
     return res.status(500).json({
       success: false,
       error: {
