@@ -22,5 +22,4 @@ const createUserQuery = ({
 module.exports = {
   loginUserQuery,
   createUserQuery,
-  changePassword,
 };

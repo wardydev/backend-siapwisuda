@@ -4,6 +4,9 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const pdfSummarizeRouter = require("./routes/pdfSummarize.js");
 const usersRouter = require("./routes/users.js");
+const depositRouter = require("./routes/deposit.js");
+const balanceRouter = require("./routes/balance.js");
+const sksRouter = require("./routes/sks.js");
 const { authenticateToken } = require("./middleware/authenticatedUser.js");
 
 // reassign
@@ -20,8 +23,11 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 // routes
-app.use("/pdf-summarize", authenticateToken, pdfSummarizeRouter);
 app.use("/users", usersRouter);
+app.use("/pdf-summarize", authenticateToken, pdfSummarizeRouter);
+app.use("/deposit", authenticateToken, depositRouter);
+app.use("/balance", authenticateToken, balanceRouter);
+app.use("/sks", authenticateToken, sksRouter);
 
 // default
 app.get("/", (req, res) => {
