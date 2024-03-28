@@ -1,0 +1,7 @@
+const PRICEPERTOKEN = 15000;
+const TOKENSPERSKS = 10000;
+
+module.exports = {
+  PRICEPERTOKEN,
+  TOKENSPERSKS,
+};

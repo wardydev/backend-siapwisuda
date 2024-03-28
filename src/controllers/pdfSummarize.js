@@ -175,12 +175,15 @@ const summarizePdf = async (req, res) => {
 
     summarisedText = await summariseChunk(summarisedText, maxWords, language);
 
-    res.json({
-      text: summarisedText.text,
-      tokens: summarisedText.totalTokens,
+    res.status(200).json({
+      success: true,
+      message: "Selamat!, File pdf berhasil di rangkum.",
+      data: {
+        text: summarisedText.text,
+        tokens: summarisedText.totalTokens,
+      },
     });
   } catch (error) {
-    console.log(error);
     res.status(500).json({
       success: false,
       error: {
