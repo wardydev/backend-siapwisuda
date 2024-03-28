@@ -52,9 +52,19 @@ const getUserBalance = async (req, res) => {
     const { authorization } = req.headers;
     const idUser = getIdUser(authorization);
 
-    console.log("idUser", idUser);
-
     const [data] = await getUserBalanceQuery(idUser);
+
+    if (data.length === 0) {
+      res.status(400).json({
+        success: false,
+        error: {
+          code: 400,
+          message:
+            "Tidak ada data deposit, Pastikan telah menyelesaikan pembayaran.",
+        },
+      });
+      return;
+    }
 
     res.status(200).json({
       success: true,

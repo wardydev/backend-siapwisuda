@@ -4,10 +4,6 @@ const { createSksQuery } = require("../models/sks.js");
 
 const createSks = async (req, res) => {
   try {
-    const { authorization } = req.headers;
-    console.log(authorization);
-    const idUser = getIdUser(authorization);
-
     const { amount, title, discount, isSpecial } = req.body;
     if (!amount | !title) {
       res.status(400).json({
@@ -25,7 +21,6 @@ const createSks = async (req, res) => {
     let discountPrice = 100 - discount;
 
     await createSksQuery({
-      idUser,
       amount,
       tokens: amount * TOKENSPERSKS,
       price: (sksPrice * discountPrice) / 100,

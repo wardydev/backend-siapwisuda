@@ -2,12 +2,14 @@
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
+const { authenticateToken } = require("./middleware/authenticatedUser.js");
 const pdfSummarizeRouter = require("./routes/pdfSummarize.js");
 const usersRouter = require("./routes/users.js");
 const depositRouter = require("./routes/deposit.js");
 const balanceRouter = require("./routes/balance.js");
 const sksRouter = require("./routes/sks.js");
-const { authenticateToken } = require("./middleware/authenticatedUser.js");
+const tokensRouter = require("./routes/tokens.js");
+const transactionRouter = require("./routes/transactions.js");
 
 // reassign
 const app = express();
@@ -28,6 +30,8 @@ app.use("/pdf-summarize", authenticateToken, pdfSummarizeRouter);
 app.use("/deposit", authenticateToken, depositRouter);
 app.use("/balance", authenticateToken, balanceRouter);
 app.use("/sks", authenticateToken, sksRouter);
+app.use("/tokens", authenticateToken, tokensRouter);
+app.use("/transaction", authenticateToken, transactionRouter);
 
 // default
 app.get("/", (req, res) => {
